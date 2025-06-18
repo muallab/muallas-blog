@@ -6,6 +6,18 @@
 </head>
 <body>
   <h1>All Articles</h1>
+  <a href="{% url 'article_create' %}">+ New Article</a>
+<ul>
+{% for a in articles %}
+  <li>
+    <a href="{% url 'article_detail' a.pk %}">{{ a.title }}</a>
+    [<a href="{% url 'article_update' a.pk %}">edit</a> |
+     <a href="{% url 'article_delete' a.pk %}">delete</a>]
+  </li>
+{% empty %}
+  <li>No articles yet.</li>
+{% endfor %}
+</ul>
   <nav>
     <a href="{% url 'homepage' %}">Home</a> |
     <a href="{% url 'about'    %}">About</a> |

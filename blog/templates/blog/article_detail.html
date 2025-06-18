@@ -1,0 +1,4 @@
+<h1>{{ article.title }}</h1>
+<p><em>Published: {{ article.created_at|date:"F j, Y" }}</em></p>
+<div>{{ article.content }}</div>
+<a href="{% url 'article_list' %}">← Back to articles</a>
