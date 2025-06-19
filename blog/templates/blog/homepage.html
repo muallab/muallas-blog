@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Mualla’s Blog – Home</title>
-</head>
-<body>
-  <h1>Welcome to Mualla’s Blog!</h1>
-  <p>This is the homepage.</p>
-  <nav>
-    <a href="{% url 'homepage' %}">Home</a> |
-    <a href="{% url 'about'    %}">About</a>
-  </nav>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Home – Mualla’s Blog{% endblock %}
+
+{% block content %}
+  <div class="p-5 bg-white rounded shadow-sm text-center">
+    <h1 class="display-4">Welcome to Mualla’s Blog!</h1>
+    <p class="lead">A clean, modern Django-powered blog.</p>
+  </div>
+{% endblock %}
+

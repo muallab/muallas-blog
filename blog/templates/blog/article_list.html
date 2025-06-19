@@ -1,37 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Articles – Mualla’s Blog</title>
-</head>
-<body>
-  <h1>All Articles</h1>
-  <a href="{% url 'article_create' %}">+ New Article</a>
-<ul>
-{% for a in articles %}
-  <li>
-    <a href="{% url 'article_detail' a.pk %}">{{ a.title }}</a>
-    [<a href="{% url 'article_update' a.pk %}">edit</a> |
-     <a href="{% url 'article_delete' a.pk %}">delete</a>]
-  </li>
-{% empty %}
-  <li>No articles yet.</li>
-{% endfor %}
-</ul>
-  <nav>
-    <a href="{% url 'homepage' %}">Home</a> |
-    <a href="{% url 'about'    %}">About</a> |
-    <a href="{% url 'article_list' %}">Articles</a>
-  </nav>
-  <ul>
+{% extends "base.html" %}
+
+{% block title %}Articles – Mualla’s Blog{% endblock %}
+
+{% block content %}
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>All Articles</h2>
+    <a class="btn btn-primary" href="{% url 'article_create' %}">+ New Article</a>
+  </div>
+  <div class="row g-4">
     {% for article in articles %}
-      <li>
-        <strong>{{ article.title }}</strong>
-        <small>— {{ article.created_at|date:"F j, Y" }}</small>
-      </li>
+      <div class="col-md-6">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">{{ article.title }}</h5>
+            <p class="text-muted">{{ article.created_at|date:"F j, Y" }}</p>
+            <a href="{% url 'article_detail' article.pk %}" class="btn btn-outline-primary">Read more</a>
+          </div>
+        </div>
+      </div>
     {% empty %}
-      <li>No articles yet.</li>
+      <p>No articles yet.</p>
     {% endfor %}
-  </ul>
-</body>
-</html>
+  </div>
+{% endblock %}

@@ -1,4 +1,18 @@
-<h1>{{ article.title }}</h1>
-<p><em>Published: {{ article.created_at|date:"F j, Y" }}</em></p>
-<div>{{ article.content }}</div>
-<a href="{% url 'article_list' %}">← Back to articles</a>
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }} – Mualla’s Blog{% endblock %}
+
+{% block content %}
+  <div class="bg-white p-4 rounded shadow-sm">
+    <h2>{{ article.title }}</h2>
+    <p class="text-muted">Published {{ article.created_at|date:"F j, Y" }}</p>
+    <hr>
+    <p>{{ article.content }}</p>
+    <div class="mt-4">
+      <a class="btn btn-secondary" href="{% url 'article_list' %}">← Back to list</a>
+      <a class="btn btn-outline-primary" href="{% url 'article_update' article.pk %}">Edit</a>
+      <a class="btn btn-danger" href="{% url 'article_delete' article.pk %}">Delete</a>
+    </div>
+  </div>
+{% endblock %}
+
